@@ -25,7 +25,7 @@ class TimeCalculator {
     }
   }
 
-  long getDuration(String start, String end) {
+  void getDuration(String start, String end, Node node) {
     try {
       ParsePosition p1 = new ParsePosition(0);
       ParsePosition p2 = new ParsePosition(0);
@@ -35,7 +35,7 @@ class TimeCalculator {
       long offset1 = timeZones[0].getOffset(d1.getTime());
       long offset2 = timeZones[1].getOffset(d2.getTime());
       
-      return (long)(d2.getTime() + offset2) - (d1.getTime() + offset1);
+      node.totalTimeThere += (long)(d2.getTime() + offset2) - (d1.getTime() + offset1);
     } 
     catch (NullPointerException e) {
       println("Error");
