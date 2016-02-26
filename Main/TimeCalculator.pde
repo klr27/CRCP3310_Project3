@@ -6,7 +6,7 @@ class TimeCalculator {
   SimpleDateFormat format;
 
   TimeCalculator() {
-    format = new SimpleDateFormat("MM/dd hh:mm a");
+    format = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
   }
 
   void setSimpleTimeZones(int [] zone) {
