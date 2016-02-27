@@ -28,6 +28,7 @@ final int LAT = 1;
 final int LONG = 2;
 final int TIME_ZONE = 3;
 
+//TimeCalculator check
 Node node;
 PVector checkPos;
 String check1 = "01/01/2016 10:00AM";

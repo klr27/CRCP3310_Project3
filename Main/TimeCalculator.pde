@@ -37,6 +37,11 @@ class TimeCalculator {
       long offset1 = timeZones[0].getOffset(d1.getTime());
       long offset2 = timeZones[1].getOffset(d2.getTime());
       
+      println(offset1);
+      println(offset2);
+      println(d1.getTime());
+      println(d2.getTime());
+      
       node.totalTimeThere += (long)(d2.getTime() + offset2) - (d1.getTime() + offset1);
     } 
     catch (NullPointerException e) {
