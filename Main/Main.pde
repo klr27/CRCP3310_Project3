@@ -45,10 +45,13 @@ void setup() {
   //final int TOTAL_SCHED_COLS = schedule.getColumnCount();
   //final int TOTAL_SCHED_ROWS = schedule.getRowCount();
   //final int TOTAL_CI_COLS = cityInfo.getColumnCount();
-  //final int TOTAL_CI_ROWS = cityInfo.getRowCount();
+  final int TOTAL_CI_ROWS = cityInfo.getRowCount();
+  
+  nodes = new Node[TOTAL_CI_ROWS];
+  initNodes();
   
   checkPos = new PVector(0, 0);
-  node = new Node("Check", checkPos);
+  node = new Node("Check", checkPos, zoneCheck1);
   
   calculator = new TimeCalculator();
   
