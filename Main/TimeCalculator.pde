@@ -9,15 +9,17 @@ class TimeCalculator {
     format = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
   }
 
-  void setSimpleTimeZones(int [] zone) {
+  void setSimpleTimeZones(int zone1, int zone2) {
+    int [] zones = new int[2];
+    zones[0] = zone1;
+    zones[1] = zone2;
+    
     for (int i=0; i<2; i++) {
-
-      int rawOffset = zone[i] * MILL_CONVERSION;
+      int rawOffset = zones[i] * MILL_CONVERSION;
       String [] ids = TimeZone.getAvailableIDs(rawOffset);
       String id = ids[0];
 
       timeZones[i] = new SimpleTimeZone(rawOffset, id);
-
       timeZones[i].setStartRule(Calendar.APRIL, 1, Calendar.SUNDAY, 2 * MILL_CONVERSION);
       timeZones[i].setEndRule(Calendar.OCTOBER, -1, Calendar.SUNDAY, 2 * MILL_CONVERSION);
       
@@ -25,7 +27,7 @@ class TimeCalculator {
     }
   }
 
-  void getDuration(String start, String end, Node node) {
+  void calculate(String start, String end, Node node) {
     try {
       ParsePosition p1 = new ParsePosition(0);
       ParsePosition p2 = new ParsePosition(0);
@@ -42,4 +44,5 @@ class TimeCalculator {
       e.printStackTrace();
     }
   }
+  
 }

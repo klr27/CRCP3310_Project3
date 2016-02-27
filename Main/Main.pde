@@ -28,16 +28,33 @@ final int LAT = 1;
 final int LONG = 2;
 final int TIME_ZONE = 3;
 
+Node node;
+PVector checkPos;
+String check1 = "01/01/2016 10:00AM";
+String check2 = "01/01/2016 2:00PM";
+int zoneCheck1 = -5;
+int zoneCheck2 = -5;
+
 void setup() {
   size(1200, 700);
   
   schedule = loadTable("RTRSchedule.csv", "header");
   cityInfo = loadTable("Lat-Long_TZ.csv", "header");
   
-  final int TOTAL_SCHED_COLS = schedule.getColumnCount();
-  final int TOTAL_SCHED_ROWS = schedule.getRowCount();
-  final int TOTAL_CI_COLS = cityInfo.getColumnCount();
-  final int TOTAL_CI_ROWS = cityInfo.getRowCount();
+  //final int TOTAL_SCHED_COLS = schedule.getColumnCount();
+  //final int TOTAL_SCHED_ROWS = schedule.getRowCount();
+  //final int TOTAL_CI_COLS = cityInfo.getColumnCount();
+  //final int TOTAL_CI_ROWS = cityInfo.getRowCount();
+  
+  checkPos = new PVector(0, 0);
+  node = new Node("Check", checkPos);
+  
+  calculator = new TimeCalculator();
+  
+  calculator.setSimpleTimeZones(zoneCheck1, zoneCheck2);
+  calculator.calculate(check1, check2, node);
+  
+  println(node.totalTimeThere);
   
 }
 
