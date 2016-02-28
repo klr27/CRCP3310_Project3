@@ -1,58 +1,74 @@
 class TimeCalculator {
 
-  final int MILL_CONVERSION = 60 * 60 * 1000;
-  SimpleTimeZone [] timeZones = new SimpleTimeZone[2];
-  GregorianCalendar [] calendars = new GregorianCalendar[2];
-  int [] zoneOffsets = new int[2];
-  SimpleDateFormat format;
+  int zone1;
+  int zone2;
+  //final int MILL_CONVERSION = 60 * 60 * 1000;
+  
+  final double HOUR_CONVERSION = 60 * 60 * 1000;
 
-  TimeCalculator() {
-    format = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+  /*SimpleTimeZone tz1;
+   SimpleTimeZone tz2;
+   GregorianCalendar calendar1;
+   GregorianCalendar calendar2;
+   */
+   
+  final int YEAR = 2015;
+  int mon1;
+  int mon2;
+  int d1;
+  int d2;
+  int h1;
+  int h2;
+  int min1;
+  int min2;
+
+  TimeCalculator(int zone1, int zone2, int mon1, int mon2, int d1, int d2, int h1, int h2, int min1, int min2) {
+    this.zone1 = zone1;
+    this.zone2 = zone2;
+    this.mon1 = mon1;
+    this.mon2 = mon2;
+    this.d1 = d1;
+    this.d2 = d2;
+    this.h1 = h1;
+    this.h2 = h2;
+    this.min1 = min1;
+    this.min2 = min2;
   }
 
-  void setSimpleTimeZones(int zone1, int zone2) {
-    int [] zones = new int[2];
-    zones[0] = zone1;
-    zones[1] = zone2;
+  void setDateTimeZones() {
+    int zOffset1 = zone1 * MILL_CONVERSION;
+    String [] ids1 = TimeZone.getAvailableIDs(zOffset1);
+    String id1 = ids1[0];
 
-    for (int i=0; i<2; i++) {
-      zoneOffsets[i] = zones[i] * MILL_CONVERSION;
-      String [] ids = TimeZone.getAvailableIDs(zoneOffsets[i]);
-      String id = ids[0];
+    int zOffset2 = zone2 * MILL_CONVERSION;
+    String [] ids2 = TimeZone.getAvailableIDs(zOffset2);
+    String id2 = ids1[0];
 
-      timeZones[i] = new SimpleTimeZone(zoneOffsets[i], id);
-      timeZones[i].setStartRule(Calendar.APRIL, 1, Calendar.SUNDAY, 2 * MILL_CONVERSION);
-      timeZones[i].setEndRule(Calendar.OCTOBER, -1, Calendar.SUNDAY, 2 * MILL_CONVERSION);
+    tz1 = new SimpleTimeZone(zOffset1, id1);
+    tz1.setStartRule(Calendar.APRIL, 1, Calendar.SUNDAY, 2 * MILL_CONVERSION);
+    tz1.setEndRule(Calendar.OCTOBER, -1, Calendar.SUNDAY, 2 * MILL_CONVERSION);
 
-      calendars[i] = new GregorianCalendar(timeZones[i]);
-    }
+    tz2 = new SimpleTimeZone(zOffset2, id2);
+    tz2.setStartRule(Calendar.APRIL, 1, Calendar.SUNDAY, 2 * MILL_CONVERSION);
+    tz2.setEndRule(Calendar.OCTOBER, -1, Calendar.SUNDAY, 2 * MILL_CONVERSION);
   }
 
-  void calculate(String start, String end, Node node) {
-    try {
-      ParsePosition p1 = new ParsePosition(0);
-      ParsePosition p2 = new ParsePosition(0);
-      Date d1 = format.parse(start, p1);
-      Date d2 = format.parse(end, p2);
-      
-      calendars[0].setTime(d1);
-      calendars[0].complete();
-      calendars[1].setTime(d2);
-      calendars[1].complete();
+  void setCalendars() {
+    calendar1 = new GregorianCalendar(YEAR, mon1, d1, h1, min1);
+    calendar1.setTimeZone(tz1);
 
-      long offset1 = calendars[0].get(ZONE_OFFSET) + calendars[0].get(DST_OFFSET);
-      long offset2 = calendars[1].get(ZONE_OFFSET) + calendars[1].get(DST_OFFSET);
+    calendar2 = new GregorianCalendar(YEAR, mon2, d2, h2, min2);
+    calendar1.setTimeZone(tz2);
+  }
 
-      println(offset1);
-      println(offset2);
-      println(d1.getTime());
-      println(d2.getTime());
+  double calculate() {
+    setSimpleTimeZones();
+    setCalendars();
 
-      node.totalTimeThere += (long)((d2.getTime() + offset2) - (d1.getTime() + offset1));
-    } 
-    catch (NullPointerException e) {
-      println("Error");
-      e.printStackTrace();
-    }
+    Date time1 = calendar1.getTime();
+    Date time2 = calendar2.getTime();
+    long timeDiff = time2.getTime() - time1.getTime();
+
+    return timeDiff / HOUR_CONVERSION;
   }
 }
