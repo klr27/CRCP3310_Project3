@@ -2,13 +2,6 @@
 // Visualization of my Dad's travel over 2015
 // Kali Ruppert
 
-/*import java.util.TimeZone;
-import java.util.SimpleTimeZone;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Date;
-*/
-
 Table schedule;
 Table cityInfo;
 
@@ -51,6 +44,7 @@ void setup() {
   totalCIRows = cityInfo.getRowCount();
 
   nodes = new Node[totalCIRows];
+  edges = new Edge[totalSchedRows - 1];
   initNodes();
 
   //check TimeCalculator
@@ -59,13 +53,13 @@ void setup() {
   mon1 = 1;
   mon2 = 1;
   day1 = 1;
-  day2 = 1;
+  day2 = 2;
   hour1 = 2;
-  hour2 = 17;
+  hour2 = 0;
   min1 = 0;
-  min2 = 30;
+  min2 = 0;
   
-  calculator = new TimeCalculator(zone1, zone2, mon1, mon2, day1, day2, hour1, hour2, min1, min2);
+  calculator = new TimeCalculator(zone1, zone1, mon1, mon2, day1, day2, hour1, hour2, min1, min2);
   double hours = calculator.calculate();
   println(hours);
 }

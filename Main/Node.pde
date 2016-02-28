@@ -2,15 +2,14 @@ class Node {
   
   String name;
   PVector location;
-  int timeZone;
+  String timeZone;
   int timesVisited;
-  long totalTimeThere;
+  float totalTimeThere;
   
-  Node(String name, PVector location, int timeZone){
+  Node(String name, PVector location, String timeZone){
     this.name = name;
     this.location = location;
     this.timeZone = timeZone;
-    //totalTimeThere = 50;
   }
   
 }
