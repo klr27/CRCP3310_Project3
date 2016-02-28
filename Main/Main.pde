@@ -30,8 +30,8 @@ int totalCIRows;
 int totalSchedRows;
 
 //TimeCalculator check
-int zone1;
-int zone2;
+String zone1;
+String zone2;
 int mon1;
 int mon2;
 int day1;
@@ -42,7 +42,7 @@ int min1;
 int min2;
 
 void setup() {
-  size(1200, 700);
+  //size(1200, 700);
 
   schedule = loadTable("RTRSchedule.csv", "header");
   cityInfo = loadTable("Lat-Long_TZ.csv", "header");
@@ -54,16 +54,16 @@ void setup() {
   initNodes();
 
   //check TimeCalculator
-  zone1 = -5;
-  zone2 = 0;
+  zone1 = "US/Eastern";
+  zone2 = "Europe/London";
   mon1 = 1;
   mon2 = 1;
   day1 = 1;
   day2 = 1;
-  hour1 = 17;
-  hour2 = 2;
+  hour1 = 2;
+  hour2 = 17;
   min1 = 0;
-  min2 = 0;
+  min2 = 30;
   
   calculator = new TimeCalculator(zone1, zone2, mon1, mon2, day1, day2, hour1, hour2, min1, min2);
   double hours = calculator.calculate();
