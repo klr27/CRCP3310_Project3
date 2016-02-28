@@ -1,27 +1,30 @@
 class Parser {
-  
-  String arrDate;
-  String arrTime;
-  String depDate;
-  String depTime;
-  int mon1;
-  int mon2;
-  int d1;
-  int d2;
-  int h1;
-  int h2;
-  int min1;
-  int min2;
-  
-  Parser(String arrDate, String arrTime, String depDate, String depTime) {
-    this.arrDate = arrDate;
-    this.arrTime = arrTime;
-    this.depDate = depDate;
-    this.depTime = depTime;
+ 
+  Node [] nodes;
+
+  Parser(Node [] nodes) {
+  }
+
+  int getNode(String name) {
+    int index = 0;
+    for (int i=0; i < nodes.length - 1; i++) {
+      if (nodes[i].name == name) {
+        index = i;
+      }
+    }
+    return index;
   }
   
-  int getDay(String date) {
-    String [] list = split(date, '/');
-    return 
+  int [] getDate/Time(String date, String time) {
+    String [] dateList = split(date, '/');
+    String [] timeList = split(time, ':');
+    int [] dateTime = new int[4];
+    dateTime[0] = dateList[0];
+    dateTime[1] = dateList[1];
+    dateTime[2] = timeList[0];
+    dateTime[3] = timeList[1];
+    
+    return dateTime;
   }
+  
 }
