@@ -22,17 +22,20 @@ class TimeCalculator {
   }
 
   void init() {
-    int [] dateTimeInfo = new int[2];
-    dateTimeInfo[0] = start;
-    dateTimeInfor[1] = end;
     for (int i=0; i<2; i++) {
       timeZones[i] = DateTimeZone.forID(zones[i]);
-      dateTimes[i] = new DateTime(YEAR, start[MONTH], start[DAY], start[HOUR], start[MINUTE]);
     }
+    dateTimes[0] = new DateTime(YEAR, start[MONTH], start[DAY], start[HOUR], start[MINUTE]);
+    dateTimes[1] = new DateTime(YEAR, end[MONTH], end[DAY], end[HOUR], end[MINUTE]);
   }
 
   double calculate() {
-    long timeDiff = dateTimes[1].getMillis() = dateTimes[0].getMillis();
+    long [] times = new long[2];
+    for (int i=0; i<2; i++) {
+      times[i] = dateTimes[i].getMillis();
+    }
+
+    long timeDiff = times[1] - times[2];
     return timeDiff / HOUR_CONVERSION;
   }
 }
