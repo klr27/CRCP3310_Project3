@@ -6,7 +6,7 @@ class Parser {
     this.nodes = nodes;
   }
 
-  int getNode(String name) {
+  int getNodeIndex(String name) {
     int index = 0;
     for (int i=0; i < nodes.length - 1; i++) {
       if (nodes[i].name == name) {

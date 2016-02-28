@@ -8,3 +8,8 @@ void initNodes() {
     nodes[i] = new Node(name, pos, zone);
   }
 }
+
+void initTransportNode() {
+  PVector transportPos = new PVector(0, 0);
+  transport = new Node("Transport", transportPos, "N/A");
+}

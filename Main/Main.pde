@@ -10,6 +10,8 @@ Parser parser;
 Node [] nodes;
 Path [] paths; 
 
+Node transport;
+
 int totalCIRows;
 int totalSchedRows;
 
@@ -28,6 +30,7 @@ void setup() {
   initNodes();
 
   parser = new Parser(nodes);
+  initTransportNode();
 }
 
 void draw() {
