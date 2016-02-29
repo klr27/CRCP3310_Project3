@@ -14,7 +14,7 @@ class Traveler {
     duration = new double[totalSchedRows];
   }
 
-  void displayTraveler() {
+  void display() {
     if (step != 0) {
       paths[step - 1].display();
     }
@@ -22,19 +22,19 @@ class Traveler {
       stroke(0);
       fill(0);
     } else {
-      if (duration[state] <= 4) {
+      if (duration[step] <= 6) {
         stroke(255, 0, 0);
         fill(255, 0, 0);
-      } else if ((duration[state] > 4) && (duration[state] <= 24)) {
+      } else if ((duration[step] > 6) && (duration[step] <= 24)) {
         stroke(255, 188, 0);
         fill(255, 188, 0);
-      } else if ((duration[state] > 24) && (duration[state] <= 48)) {
+      } else if ((duration[step] > 24) && (duration[step] <= 48)) {
         stroke(255, 247, 0);
         fill(255, 247, 0);
-      } else if ((duration[state] > 48) && (duration[state] <= 96)) {
+      } else if ((duration[step] > 48) && (duration[step] <= 96)) {
         stroke(2, 203, 0);
         fill(2, 203, 0);
-      } else if ((duration[state] > 96) && (duration[state] <= 168)) {
+      } else if ((duration[step] > 96) && (duration[step] <= 168)) {
         stroke(0, 232, 255);
         fill(0, 232, 255);
       } else {

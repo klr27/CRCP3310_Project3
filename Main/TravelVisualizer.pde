@@ -26,6 +26,7 @@ class TravelVisualizer {
   double percentEurope;
   double percentAsia;
   double percentAustralia;
+  double percentTravel;
 
   TravelVisualizer(Node [] nodes, Path [] paths, Node transport, int state) {
     this.nodes = nodes;
@@ -34,6 +35,7 @@ class TravelVisualizer {
     this.state = state;
     durations = new double[totalSchedRows];
     initializeVis();
+    calculatePercentages();
   }
 
   int [] getDateTimeInfo(String date, String time) {
@@ -68,7 +70,7 @@ class TravelVisualizer {
 
       travel = new TimeCalculator(zone1, zone2, depart, arrive2);
       double transportTime = travel.calculate();
-      travelTime[i] = transportTime;
+      //travelTime[i] = transportTime;
       transport.totalTime =+ transportTime;
 
       start = new PVector(nodes[indices[0]].location.x, nodes[indices[0]].location.y);
@@ -127,6 +129,7 @@ class TravelVisualizer {
     percentEurope = Europe/totalTime * 100;
     percentAsia = Asia/totalTime * 100;
     percentAustralia = Australia/totalTime * 100;
+    percentTravel = transport.totalTime/totalTime * 100;
   }
 
   int [] convertToDayHourMin(double time) {
@@ -139,5 +142,17 @@ class TravelVisualizer {
   }
 
   void display() {
+    for (int i=0; i < nodes.length-1; i++) {
+      nodes[i].display(totalTime);
+    }
+    
+   if (state == SHOW_ALL) {
+      for (int i=0; i < paths.length - 1; i++) {
+        paths[i].display();
+      }
+    } else {
+      traveler.display();
+    }
   }
+  
 }

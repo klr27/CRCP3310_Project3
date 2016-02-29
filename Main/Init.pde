@@ -4,7 +4,7 @@
       float x = float(cityInfo.getString(i, "Longitude"));
       float y = float(cityInfo.getString(i, "Latitude"));
       float mapx = map(x, -180, 180, 0, 1200);
-      float mapy = map(y, -90, 90, 0, 600);
+      float mapy = map(y, 90, -90, 0, 600);
       PVector pos = new PVector(mapx, mapy);
       String zone = cityInfo.getString(i, "Time Zone");
       nodes[i] = new Node(name, pos, zone, nodeState);

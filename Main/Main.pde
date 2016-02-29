@@ -13,8 +13,6 @@ Node [] nodes;
 Path [] paths; 
 Node transport;
 
-double [] travelTime;
-
 HashMap<String, Integer> nodeMap = new HashMap<String, Integer>();
 HashMap<String, String> percentageMap = new HashMap<String, String>();
 
@@ -42,8 +40,11 @@ final int STEP_BY_STEP = 1;
 int step;
 
 void setup() {
-  //size(1200, 700);
-
+  size(1200, 700);
+ 
+  map = loadImage("world.jpg");
+  map.resize(1200, 600);
+  
   schedule = loadTable("RTRSchedule.csv", "header");
   cityInfo = loadTable("Lat-Long_TZ.csv", "header");
 
@@ -53,7 +54,7 @@ void setup() {
   travelerState = BLACK_STATE;
   nodeState = BY_DURATION;
   pathState = SHOW;
-  stepState = SHOW_ALL;
+  stepState = STEP_BY_STEP;
   step = 0;
 
   nodes = new Node[totalCIRows];
@@ -62,13 +63,23 @@ void setup() {
   initNodeMap();
   initPercentageMap();
 
-  travelTime = new double[totalSchedRows - 1];
-
   travelVis = new TravelVisualizer(nodes, paths, transport, stepState);
   travelVis.initializeVis();
+  
+  for (int i=0; i<nodes.length - 1; i++) {
+    println(nodes[i].name);
+    println(nodes[i].location);
+    println(nodes[i].timeZone);
+    println(nodes[i].totalTime);
+    println(nodes[i].timesVisited);
+  }
 }
 
 void draw() {
+  background(225);
+  image(map, 0, 0);
+  travelVis.display();
+  println(step);
 }
 
 void keyPressed() {
