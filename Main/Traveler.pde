@@ -2,7 +2,7 @@ class Traveler {
   
   double [] duration;
   Path [] paths;
-  final int DIAMETER = 50;
+  final int DIAMETER = 10;
   int state;
   
   Traveler(Path [] paths, double [] duration, int state) {

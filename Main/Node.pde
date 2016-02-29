@@ -1,24 +1,29 @@
 class Node {
-  
+
   String name;
   PVector location;
   String timeZone;
   int timesVisited;
   double totalTime;
-  
-  Node(String name, PVector location, String timeZone){
+  int state;
+
+  Node(String name, PVector location, String timeZone, int state) {
     this.name = name;
     this.location = location;
     this.timeZone = timeZone;
+    this.state = state;
     timesVisited = 0;
     totalTime = 0.0;
   }
-  
+
   void display() {
-    noStroke();
+    stroke(0);
     fill(0);
     ellipseMode(CENTER);
-    ellipse(location.x, location.y, (float)totalTime, (float)totalTime);
+    if (state == 0) {
+      ellipse(location.x, location.y, (float)totalTime, (float)totalTime);
+    } else {
+      ellipse(location.x, location.y, 10, 10);
+    }
   }
- 
 }
