@@ -1,6 +1,7 @@
 class TimeCalculator {
 
-  String [] zones;
+  String zone1;
+  String zone2;
   DateTimeZone [] timeZones;
   DateTime [] dateTimes;
   final double HOUR_CONVERSION = 60 * 60 * 1000;
@@ -14,19 +15,19 @@ class TimeCalculator {
   final int HOUR = 2;
   final int MINUTE = 3;
 
-  TimeCalculator(String [] zones, int [] start, int [] end) {
-    this.zones = zones;
+  TimeCalculator(String zone1, String zone2, int [] start, int [] end) {
+    this.zone1 = zone1;
+    this.zone2 = zone2;
     this.start = start;
     this.end = end;
     init();
   }
 
   void init() {
-    for (int i=0; i<2; i++) {
-      timeZones[i] = DateTimeZone.forID(zones[i]);
-    }
-    dateTimes[0] = new DateTime(YEAR, start[MONTH], start[DAY], start[HOUR], start[MINUTE]);
-    dateTimes[1] = new DateTime(YEAR, end[MONTH], end[DAY], end[HOUR], end[MINUTE]);
+    timeZones[0] = DateTimeZone.forID(zone1);
+    timeZones[1] = DateTimeZone.forID(zone2);
+    dateTimes[0] = new DateTime(YEAR, start[MONTH], start[DAY], start[HOUR], start[MINUTE], timeZones[0]);
+    dateTimes[1] = new DateTime(YEAR, end[MONTH], end[DAY], end[HOUR], end[MINUTE], timeZones[1]);
   }
 
   double calculate() {

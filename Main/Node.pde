@@ -13,5 +13,5 @@ class Node {
     timesVisited = 0;
     totalTime = 0.0;
   }
-  
+ 
 }
