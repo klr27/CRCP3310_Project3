@@ -75,4 +75,6 @@ class TravelVisualizer {
     nodes[index].totalTime += lastTime.calculate();
   }
   
+  void display() {
+  }
 }

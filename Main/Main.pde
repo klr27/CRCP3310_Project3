@@ -14,9 +14,16 @@ Path [] paths;
 
 Node transport;
 
+PImage map;
+
 int totalCIRows;
 int totalSchedRows;
 
+int pathState;
+int travelerState;
+final int BLACK_STATE = 0;
+final int COLOR_STATE = 1; 
+final int NO_FILL_STATE = 2;
 
 void setup() {
   //size(1200, 700);
@@ -36,6 +43,9 @@ void setup() {
   
   travelVis = new TravelVisualizer(nodes, paths, parser, transport);
   travelVis.initializeVis();
+  
+  pathState = BLACK_STATE;
+  travelerState = BLACK_STATE;
   
   for (int i=0; i < totalCIRows -1; i++) {
     println(travelVis.nodes[i]);

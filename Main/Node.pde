@@ -17,6 +17,7 @@ class Node {
   void display() {
     noStroke();
     fill(0);
+    ellipseMode(CENTER);
     ellipse(location.x, location.y, (float)totalTime, (float)totalTime);
   }
  
