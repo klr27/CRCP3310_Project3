@@ -36,7 +36,7 @@ class TimeCalculator {
     long time1 = dateTimes[0].getMillis();
     long time2 = dateTimes[1].getMillis();
 
-    long timeDiff = time1 - time2;
+    long timeDiff = time2 - time1;
     return timeDiff / HOUR_CONVERSION;
   }
 }
