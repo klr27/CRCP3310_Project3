@@ -16,6 +16,7 @@ Node transport;
 double [] travelTime;
 
 HashMap<String, Integer> nodeMap = new HashMap<String, Integer>();
+HashMap<String, String> percentageMap = new HashMap<String, String>();
 
 PImage map;
 
@@ -58,7 +59,8 @@ void setup() {
   nodes = new Node[totalCIRows];
   paths = new Path[totalSchedRows - 1];
   initNodes();
-  initHashMap();
+  initNodeMap();
+  initPercentageMap();
 
   travelTime = new double[totalSchedRows - 1];
 

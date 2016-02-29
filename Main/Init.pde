@@ -15,8 +15,15 @@
     }
   }
   
-void initHashMap() {
+void initNodeMap() {
   for (int i=0; i < nodes.length; i++) {
     nodeMap.put(nodes[i].name, i);
+  }
+}
+
+void initPercentageMap() {
+  for (int i=0; i < nodes.length; i++) {
+    String [] list = split(nodes[i].timeZone, '/');
+    percentageMap.put(nodes[i].name, list[0]);
   }
 }
