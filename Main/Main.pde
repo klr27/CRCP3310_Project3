@@ -31,6 +31,10 @@ int nodeState;
 final int BY_DURATION = 0;
 final int ALL_SAME = 1;
 
+int pathState;
+final int SHOW = 0;
+final int HIDE = 1;
+
 void setup() {
   //size(1200, 700);
 
@@ -42,6 +46,7 @@ void setup() {
 
   travelerState = BLACK_STATE;
   nodeState = BY_DURATION;
+  pathState = SHOW;
   
   nodes = new Node[totalCIRows];
   paths = new Path[totalSchedRows - 1];

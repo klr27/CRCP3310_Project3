@@ -62,7 +62,7 @@ class TravelVisualizer {
 
       start = new PVector(nodes[indices[0]].location.x, nodes[indices[0]].location.y);
       end = new PVector(nodes[indices[1]].location.x, nodes[indices[1]].location.y);
-      paths[i] = new Path(start, end);
+      paths[i] = new Path(start, end, pathState);
     }
     
     int index = nodeMap.get(schedule.getString(totalSchedRows - 1, "Location"));

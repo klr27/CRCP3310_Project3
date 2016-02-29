@@ -20,7 +20,7 @@ class Node {
     stroke(0);
     fill(0);
     ellipseMode(CENTER);
-    if (state == 0) {
+    if (state == BY_DURATION) {
       ellipse(location.x, location.y, (float)totalTime, (float)totalTime);
     } else {
       ellipse(location.x, location.y, 10, 10);
