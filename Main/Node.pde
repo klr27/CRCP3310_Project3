@@ -13,5 +13,11 @@ class Node {
     timesVisited = 0;
     totalTime = 0.0;
   }
+  
+  void display() {
+    noStroke();
+    fill(0);
+    ellipse(location.x, location.y, (float)totalTime, (float)totalTime);
+  }
  
 }

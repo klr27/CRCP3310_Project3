@@ -30,9 +30,9 @@ class TravelVisualizer {
       indices[1] = parser.getNodeIndex(schedule.getString(i+1, "Location"));
 
       println(indices);
-      
+
       nodes[indices[0]].timesVisited += 1;
-      
+
       zone1 = nodes[indices[0]].timeZone;
       zone2 = nodes[indices[1]].timeZone;
 
@@ -67,11 +67,12 @@ class TravelVisualizer {
     }
     int index = parser.getNodeIndex(schedule.getString(totalSchedRows - 1, "Location"));
     nodes[index].timesVisited += 1;
-    
+
     int [] lastDepart = new int[4];
     lastDepart = parser.getDateTimeInfo(schedule.getString(totalSchedRows-1, "Dep. Date"), schedule.getString(totalSchedRows-1, "Dep. Time"));
     String lastTZ = nodes[index].timeZone;
     TimeCalculator lastTime = new TimeCalculator(lastTZ, lastTZ, arrive2, lastDepart);
     nodes[index].totalTime += lastTime.calculate();
   }
+  
 }
