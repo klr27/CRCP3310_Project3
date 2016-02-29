@@ -102,43 +102,9 @@ class TravelVisualizer {
     totalTime += transport.totalTime;
   }
 
-  void calculatePercentages() {
-    calculateTotalTime();
-    double US = 0;
-    double Europe = 0;
-    double Asia = 0;
-    double Australia = 0;
 
-    for (int i=0; i < nodes.length - 1; i++) {
-      String area = percentageMap.get(nodes[i].name);
-      if (area == "US") {
-        US += nodes[i].totalTime;
-      } else if (area == "Europe") {
-        Europe += nodes[i].totalTime;
-      } else if (area == "Asia") {
-        Asia += nodes[i].totalTime;
-      } else {
-        Australia += nodes[i].totalTime;
-      }
-    }
 
-    percentHome = nodes[nodeMap.get("Baltimore")].totalTime / totalTime * 100;
-    percentLondon = nodes[nodeMap.get("London")].totalTime / totalTime * 100;
-    percentUS = US/totalTime * 100;
-    percentEurope = Europe/totalTime * 100;
-    percentAsia = Asia/totalTime * 100;
-    percentAustralia = Australia/totalTime * 100;
-    percentTravel = transport.totalTime/totalTime * 100;
-  }
-
-  int [] convertToDayHourMin(double time) {
-    int [] daysHoursMins = new int[3];
-    daysHoursMins[0] = (int)(time / 1000 * 60 * 60 * 24);
-    daysHoursMins[1] = (int)(time / (1000 * 60 * 60) % 24);
-    daysHoursMins[2] = (int)(time / (1000 * 60) % 60);
-
-    return daysHoursMins;
-  }
+ 
 
   void displayCityStats() {
     for (int i=0; i < nodes.length -1; i++) {

@@ -7,18 +7,30 @@ import java.util.Map;
 Table schedule;
 Table cityInfo;
 
-TravelVisualizer travelVis;
-
-Traveler traveler;
-
-Node [] nodes;
-Path [] paths; 
-Node transport;
-
 HashMap<String, Integer> nodeMap = new HashMap<String, Integer>();
 HashMap<String, String> percentageMap = new HashMap<String, String>();
 
 PImage map;
+
+//TravelVisualizer travelVis;
+Node [] nodes;
+Path [] paths; 
+Node transport;
+
+Traveler todd;
+double [] durations;
+color [] colors;
+
+double totalTime;
+double [] percentages;
+String [] percentNames;
+final int HOME = 0;
+final int LONDON = 1;
+final int US = 2;
+final int EUROPE = 3;
+final int ASIA = 4;
+final int AUSTRALIA = 5;
+final int TRAVEL = 6;
 
 int totalCIRows;
 int totalSchedRows;
@@ -38,7 +50,6 @@ final int HIDE = 1;
 int stepState;
 final int SHOW_ALL = 0;
 final int STEP_BY_STEP = 1;
-
 int step;
 
 void setup() {
@@ -59,6 +70,9 @@ void setup() {
   stepState = STEP_BY_STEP;
   step = 0;
 
+  durations = new double[totalSchedRows];
+  percentages = new float[6];
+  
   nodes = new Node[totalCIRows];
   paths = new Path[totalSchedRows - 1];
   initNodes();
@@ -109,7 +123,7 @@ void keyPressed() {
       pathState = SHOW;
     }
   }
-  
+
   if (key == 'c' || key == 'C') {
     if (travelerState == BLACK_STATE) {
       travelerState = COLOR_STATE;
@@ -117,7 +131,7 @@ void keyPressed() {
       travelerState = BLACK_STATE;
     }
   }
-  
+
   if (key == 'd' || key == 'D') {
     if (nodeState == BY_DURATION) {
       nodeState = ALL_SAME;
@@ -125,7 +139,7 @@ void keyPressed() {
       nodeState = BY_DURATION;
     }
   }
-  
+
   if (key == ' ') {
     if (stepState == SHOW_ALL) {
       nodeState = STEP_BY_STEP;
