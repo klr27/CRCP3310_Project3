@@ -7,8 +7,6 @@ Table cityInfo;
 
 TravelVisualizer travelVis;
 
-Parser parser;
-
 Node [] nodes;
 Path [] paths; 
 
@@ -37,22 +35,21 @@ void setup() {
   nodes = new Node[totalCIRows];
   paths = new Path[totalSchedRows - 1];
   initNodes();
-
-  parser = new Parser(nodes);
   initTransportNode();
   
-  travelVis = new TravelVisualizer(nodes, paths, parser, transport);
-  travelVis.initializeVis();
+  travelVis = new TravelVisualizer(nodes, paths, transport);
+  //travelVis.initializeVis();
   
   pathState = BLACK_STATE;
   travelerState = BLACK_STATE;
   
-  /*for (int i=0; i < totalCIRows -1; i++) {
+  for (int i=0; i < totalCIRows -1; i++) {
     println(travelVis.nodes[i].name);
     println(travelVis.nodes[i].location);
     println(travelVis.nodes[i].timesVisited);
     println(travelVis.nodes[i].totalTime);
-  }*/
+    println(travelVis.nodes[i].timeZone);
+  }
 }
 
 void draw() {

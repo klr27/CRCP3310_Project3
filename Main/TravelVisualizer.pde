@@ -17,17 +17,38 @@ class TravelVisualizer {
   PVector start;
   PVector end;
 
-  TravelVisualizer(Node [] nodes, Path [] paths, Parser parser, Node transport) {
+  TravelVisualizer(Node [] nodes, Path [] paths, Node transport) {
     this.nodes = nodes;
     this.paths = paths;
-    this.parser = parser;
     this.transport = transport;
+  }
+
+  int getNodeIndex(String city) {
+    int index = 0;
+    for (int i=0; i < nodes.length - 1; i++) {
+      if (city == nodes[i].name) {
+        index = i;
+      }
+    }
+    return index;
+  }
+
+  int [] getDateTimeInfo(String date, String time) {
+    String [] dateList = split(date, '/');
+    String [] timeList = split(time, ':');
+    int [] dateTime = new int[4];
+    dateTime[0] = int(dateList[0]);
+    dateTime[1] = int(dateList[1]);
+    dateTime[2] = int(timeList[0]);
+    dateTime[3] = int(timeList[1]);
+
+    return dateTime;
   }
 
   void initializeVis() {
     for (int i=0; i < totalSchedRows - 2; i++) {
-      indices[0] = parser.getNodeIndex(schedule.getString(i, "Location"));
-      indices[1] = parser.getNodeIndex(schedule.getString(i+1, "Location"));
+      indices[0] = getNodeIndex(schedule.getString(i, "Location"));
+      indices[1] = getNodeIndex(schedule.getString(i+1, "Location"));
 
       println(indices);
 
@@ -40,19 +61,19 @@ class TravelVisualizer {
       println(zone2);
 
 
-      arrive1 = parser.getDateTimeInfo(schedule.getString(i, "Arrival Date"), schedule.getString(i, "Arrival Time"));
+      arrive1 = getDateTimeInfo(schedule.getString(i, "Arrival Date"), schedule.getString(i, "Arrival Time"));
       println(arrive1);
 
-      depart = parser.getDateTimeInfo(schedule.getString(i, "Dep. Date"), schedule.getString(i, "Dep. Time"));
+      depart = getDateTimeInfo(schedule.getString(i, "Dep. Date"), schedule.getString(i, "Dep. Time"));
       println(depart);
 
-      arrive2 = parser.getDateTimeInfo(schedule.getString(i+1, "Arrival Date"), schedule.getString(i+1, "Arrival Time"));
+      arrive2 = getDateTimeInfo(schedule.getString(i+1, "Arrival Date"), schedule.getString(i+1, "Arrival Time"));
       println(arrive2);
 
       city = new TimeCalculator(zone1, zone1, arrive1, depart);
       double timeDiff = city.calculate();
       println(timeDiff);
-      
+
       nodes[indices[0]].totalTime += timeDiff;
       println(nodes[indices[0]].totalTime);
 
@@ -68,16 +89,16 @@ class TravelVisualizer {
 
       paths[i] = new Path(start, end);
     }
-    int index = parser.getNodeIndex(schedule.getString(totalSchedRows - 1, "Location"));
+    int index = getNodeIndex(schedule.getString(totalSchedRows - 1, "Location"));
     nodes[index].timesVisited += 1;
 
     int [] lastDepart = new int[4];
-    lastDepart = parser.getDateTimeInfo(schedule.getString(totalSchedRows-1, "Dep. Date"), schedule.getString(totalSchedRows-1, "Dep. Time"));
+    lastDepart = getDateTimeInfo(schedule.getString(totalSchedRows-1, "Dep. Date"), schedule.getString(totalSchedRows-1, "Dep. Time"));
     String lastTZ = nodes[index].timeZone;
     TimeCalculator lastTime = new TimeCalculator(lastTZ, lastTZ, arrive2, lastDepart);
     nodes[index].totalTime += lastTime.calculate();
   }
-  
+
   void display() {
   }
 }
