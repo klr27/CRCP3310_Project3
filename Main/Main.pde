@@ -41,10 +41,10 @@ int step;
 
 void setup() {
   size(1200, 700);
- 
+
   map = loadImage("world.jpg");
   map.resize(1200, 600);
-  
+
   schedule = loadTable("RTRSchedule.csv", "header");
   cityInfo = loadTable("Lat-Long_TZ.csv", "header");
 
@@ -65,7 +65,7 @@ void setup() {
 
   travelVis = new TravelVisualizer(nodes, paths, transport, stepState);
   travelVis.initializeVis();
-  
+
   for (int i=0; i<nodes.length - 1; i++) {
     println(nodes[i].name);
     println(nodes[i].location);
@@ -83,19 +83,22 @@ void draw() {
 }
 
 void keyPressed() {
-  if (key == RIGHT) {
-    if (step == totalSchedRows - 1) {
-      step = 0;
-    } else {
-      step += 1;
+  if (key == CODED) {
+    if (keyCode == RIGHT) {
+      if (step == totalSchedRows - 1) {
+        step = 0;
+      } else {
+        step += 1;
+      }
+    }
+    if (keyCode == LEFT) {
+      if (step == 0) {
+        step = totalSchedRows - 1;
+      } else {
+        step -= 1;
+      }
     }
   }
   
-  if (key == LEFT) {
-    if (step == 0) {
-      step = totalSchedRows - 1;
-    } else {
-      step -= 1;
-    }
-  }
+  
 }
