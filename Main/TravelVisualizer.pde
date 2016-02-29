@@ -16,11 +16,22 @@ class TravelVisualizer {
   TimeCalculator travel;
   PVector start;
   PVector end;
+  
+  int state;
+  
+  double totalTime;
+  float percentHome;
+  float percentLondon;
+  float percentUS;
+  float percentEurope;
+  float percentAsia;
+  float percentAustralia;
 
-  TravelVisualizer(Node [] nodes, Path [] paths, Node transport) {
+  TravelVisualizer(Node [] nodes, Path [] paths, Node transport, int state) {
     this.nodes = nodes;
     this.paths = paths;
     this.transport = transport;
+    this.state = state;
     durations = new double[totalSchedRows];
     initializeVis();
   }
@@ -80,10 +91,18 @@ class TravelVisualizer {
     durations[totalSchedRows - 1] = cityDuration;
     nodes[index].totalTime += cityDuration;
     
-    traveler = new Traveler(paths, durations, travelerState);
+    traveler = new Traveler(paths, durations, travelerState, step);
   }
   
+  void calculatePercentages() {
+    for (int i=0; i < nodes.length - 1; i++) {
+      
+    }
+  }
   
+  void convertToDayHourMin() {
+    
+  }
 
   void display() {
   }

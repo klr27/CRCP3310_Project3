@@ -25,7 +25,6 @@ int totalSchedRows;
 int travelerState;
 final int BLACK_STATE = 0;
 final int COLOR_STATE = 1; 
-final int NO_FILL_STATE = 2;
 
 int nodeState;
 final int BY_DURATION = 0;
@@ -34,6 +33,12 @@ final int ALL_SAME = 1;
 int pathState;
 final int SHOW = 0;
 final int HIDE = 1;
+
+int stepState;
+final int SHOW_ALL = 0;
+final int STEP_BY_STEP = 1;
+
+int step;
 
 void setup() {
   //size(1200, 700);
@@ -47,7 +52,9 @@ void setup() {
   travelerState = BLACK_STATE;
   nodeState = BY_DURATION;
   pathState = SHOW;
-  
+  stepState = SHOW_ALL;
+  step = 0;
+
   nodes = new Node[totalCIRows];
   paths = new Path[totalSchedRows - 1];
   initNodes();
@@ -55,9 +62,27 @@ void setup() {
 
   travelTime = new double[totalSchedRows - 1];
 
-  travelVis = new TravelVisualizer(nodes, paths, transport);
+  travelVis = new TravelVisualizer(nodes, paths, transport, stepState);
   travelVis.initializeVis();
 }
 
 void draw() {
+}
+
+void keyPressed() {
+  if (key == RIGHT) {
+    if (step == totalSchedRows - 1) {
+      step = 0;
+    } else {
+      step += 1;
+    }
+  }
+  
+  if (key == LEFT) {
+    if (step == 0) {
+      step = totalSchedRows - 1;
+    } else {
+      step -= 1;
+    }
+  }
 }
