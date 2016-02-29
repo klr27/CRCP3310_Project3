@@ -212,7 +212,15 @@ class TravelVisualizer {
   
   void displayToggleOptions() {
     stroke(0);
-    fill(200);
+    fill(150);
+    rect(10, 610, 700, 80);
+    fill(0);
+    text("'s' = Show/Hide Paths", 20, 630);
+    text("'d' = Size city nodes equally or by duration", 20, 650);
+    text("'c' = Display traveler node in black or in color", 20, 670);
+    text("' ' = Active/Deactivate step by step traveler mode", 250, 630);
+    text("Right Arrow = Move traveler forward on time journery", 250, 650);
+    text("Left Arrow = Move traveler backwards on time journery", 250, 670);
     
   }
 
@@ -230,6 +238,7 @@ class TravelVisualizer {
     }
     
     displayCityStats();
+    displayToggleOptions();
     
   }
 }

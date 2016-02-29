@@ -51,7 +51,7 @@ void setup() {
   totalSchedRows = schedule.getRowCount();
   totalCIRows = cityInfo.getRowCount();
 
-  travelerState = BLACK_STATE;
+  travelerState = COLOR_STATE;
   nodeState = BY_DURATION;
   pathState = SHOW;
   stepState = STEP_BY_STEP;
@@ -85,20 +85,50 @@ void draw() {
 void keyPressed() {
   if (key == CODED) {
     if (keyCode == RIGHT) {
-      if (step == totalSchedRows - 1) {
-        step = 0;
-      } else {
+      if (step != totalSchedRows - 1) {
         step += 1;
+      } else {
+        step = 0;
       }
     }
     if (keyCode == LEFT) {
-      if (step == 0) {
-        step = totalSchedRows - 1;
-      } else {
+      if (step != 0) {
         step -= 1;
+      } else {
+        step = totalSchedRows - 1;
       }
     }
   }
+
+  if (key == 's' || key == 'S') {
+    if (pathState == SHOW) {
+      pathState = HIDE;
+    } else {
+      pathState = SHOW;
+    }
+  }
   
+  if (key == 'c' || key == 'C') {
+    if (travelerState == BLACK_STATE) {
+      travelerState = COLOR_STATE;
+    } else {
+      travelerState = BLACK_STATE;
+    }
+  }
   
+  if (key == 'd' || key == 'D') {
+    if (nodeState == BY_DURATION) {
+      nodeState = ALL_SAME;
+    } else {
+      nodeState = BY_DURATION;
+    }
+  }
+  
+  if (key == ' ') {
+    if (stepState == SHOW_ALL) {
+      nodeState = STEP_BY_STEP;
+    } else {
+      nodeState = SHOW_ALL;
+    }
+  }
 }
