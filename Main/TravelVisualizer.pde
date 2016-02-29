@@ -50,7 +50,10 @@ class TravelVisualizer {
       println(arrive2);
 
       city = new TimeCalculator(zone1, zone1, arrive1, depart);
-      nodes[indices[0]].totalTime += city.calculate();
+      double timeDiff = city.calculate();
+      println(timeDiff);
+      
+      nodes[indices[0]].totalTime += timeDiff;
       println(nodes[indices[0]].totalTime);
 
       travel = new TimeCalculator(zone1, zone2, depart, arrive2);

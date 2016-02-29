@@ -20,6 +20,8 @@ class TimeCalculator {
     this.zone2 = zone2;
     this.start = start;
     this.end = end;
+    timeZones = new DateTimeZone[2];
+    dateTimes = new DateTime[2];
     init();
   }
 
@@ -31,12 +33,10 @@ class TimeCalculator {
   }
 
   double calculate() {
-    long [] times = new long[2];
-    for (int i=0; i<2; i++) {
-      times[i] = dateTimes[i].getMillis();
-    }
+    long time1 = dateTimes[0].getMillis();
+    long time2 = dateTimes[1].getMillis();
 
-    long timeDiff = times[1] - times[2];
+    long timeDiff = time1 - time2;
     return timeDiff / HOUR_CONVERSION;
   }
 }
