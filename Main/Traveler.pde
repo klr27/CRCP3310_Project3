@@ -3,12 +3,11 @@ class Traveler {
   double [] duration;
   Path [] paths;
   final int DIAMETER = 50;
-  color [] c;
   int state;
   
-  Traveler(Path [] paths, color [] c, int state) {
+  Traveler(Path [] paths, double [] duration, int state) {
     this.paths = paths;
-    this.c = c;
+    this.duration = duration;
     this.state = state;
     duration = new double[totalSchedRows];
   }

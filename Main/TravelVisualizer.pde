@@ -3,7 +3,8 @@ class TravelVisualizer {
   Node [] nodes;
   Path [] paths;
   Node transport;
-  //Traveler traveler
+  Traveler traveler;
+  double [] durations;
 
   int [] indices = new int [2];
   int [] arrive1 = new int [4];
@@ -20,6 +21,8 @@ class TravelVisualizer {
     this.nodes = nodes;
     this.paths = paths;
     this.transport = transport;
+    durations = new double[totalSchedRows];
+    initializeVis();
   }
 
   int [] getDateTimeInfo(String date, String time) {
@@ -48,11 +51,14 @@ class TravelVisualizer {
       arrive2 = getDateTimeInfo(schedule.getString(i+1, "Arrival Date"), schedule.getString(i+1, "Arrival Time"));
       
       city = new TimeCalculator(zone1, zone1, arrive1, depart);
-      nodes[indices[0]].totalTime += city.calculate();
+      double cityTime = city.calculate();
+      durations[i] = cityTime;
+      nodes[indices[0]].totalTime += cityTime;
       
       travel = new TimeCalculator(zone1, zone2, depart, arrive2);
-      double travelTime = travel.calculate();
-      transport.totalTime =+ travelTime;
+      double transportTime = travel.calculate();
+      travelTime[i] = transportTime;
+      transport.totalTime =+ transportTime;
 
       start = new PVector(nodes[indices[0]].location.x, nodes[indices[0]].location.y);
       end = new PVector(nodes[indices[1]].location.x, nodes[indices[1]].location.y);
@@ -60,6 +66,8 @@ class TravelVisualizer {
     }
     
     int index = nodeMap.get(schedule.getString(totalSchedRows - 1, "Location"));
+    String lastTZ = nodes[index].timeZone;
+    
     nodes[index].timesVisited += 1;
 
     int [] lastArr = new int[4];
@@ -67,11 +75,15 @@ class TravelVisualizer {
     lastArr = getDateTimeInfo(schedule.getString(totalSchedRows-1, "Arrival Date"), schedule.getString(totalSchedRows-1, "Arrival Time"));
     lastDep = getDateTimeInfo(schedule.getString(totalSchedRows-1, "Dep. Date"), schedule.getString(totalSchedRows-1, "Dep. Time"));
 
-    String lastTZ = nodes[index].timeZone;
     TimeCalculator lastTime = new TimeCalculator(lastTZ, lastTZ, lastArr, lastDep);
-    double duration = lastTime.calculate();
-    nodes[index].totalTime += duration;
+    double cityDuration = lastTime.calculate();
+    durations[totalSchedRows - 1] = cityDuration;
+    nodes[index].totalTime += cityDuration;
+    
+    traveler = new Traveler(paths, durations, travelerState);
   }
+  
+  
 
   void display() {
   }

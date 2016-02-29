@@ -13,6 +13,8 @@ Node [] nodes;
 Path [] paths; 
 Node transport;
 
+double [] travelTime;
+
 HashMap<String,Integer> nodeMap = new HashMap<String,Integer>();
 
 PImage map;
@@ -20,7 +22,6 @@ PImage map;
 int totalCIRows;
 int totalSchedRows;
 
-int pathState;
 int travelerState;
 final int BLACK_STATE = 0;
 final int COLOR_STATE = 1; 
@@ -40,10 +41,11 @@ void setup() {
   initNodes();
   initHashMap();
   
+  travelTime = new double[totalSchedRows - 1];
+  
   travelVis = new TravelVisualizer(nodes, paths, transport);
   travelVis.initializeVis();
   
-  pathState = BLACK_STATE;
   travelerState = BLACK_STATE;
 }
 
