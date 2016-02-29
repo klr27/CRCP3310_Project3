@@ -35,6 +35,11 @@ void setup() {
   initTransportNode();
   
   travelVis = new TravelVisualizer(nodes, paths, parser, transport);
+  travelVis.initializeVis();
+  
+  for (int i=0; i < totalCIRows -1; i++) {
+    println(travelVis.nodes[i]);
+  }
 }
 
 void draw() {
