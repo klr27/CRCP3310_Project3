@@ -5,6 +5,8 @@
 Table schedule;
 Table cityInfo;
 
+TravelVisualizer travelVis;
+
 Parser parser;
 
 Node [] nodes;
@@ -31,6 +33,8 @@ void setup() {
 
   parser = new Parser(nodes);
   initTransportNode();
+  
+  travelVis = new TravelVisualizer(nodes, paths, parser, transport);
 }
 
 void draw() {
