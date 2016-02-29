@@ -129,7 +129,13 @@ class TravelVisualizer {
     percentAustralia = Australia/totalTime * 100;
   }
 
-  void convertToDayHourMin() {
+  int [] convertToDayHourMin(double time) {
+    int [] daysHoursMins = new int[3];
+    daysHoursMins[0] = (int)(time / 1000 * 60 * 60 * 24);
+    daysHoursMins[1] = (int)(time / (1000 * 60 * 60) % 24);
+    daysHoursMins[2] = (int)(time / (1000 * 60) % 60);
+    
+    return daysHoursMins;
   }
 
   void display() {
