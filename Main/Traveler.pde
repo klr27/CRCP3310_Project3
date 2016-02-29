@@ -18,22 +18,22 @@ class Traveler {
     if (step != 0) {
       paths[step - 1].display();
     }
-    if (state == BLACK_STATE) {
+    if (state == BLACK_STATE) { //<>//
       stroke(0);
       fill(0);
     } else {
       stroke(0);
       fill(150);
-      rect(640, 610, 300, 80);
+      rect(700, 610, 350, 80);
       stroke(255, 0, 0);
       fill(255, 0, 0);
-      text("Trip duration = 0 - 6 hours", 670, 630);
+      text("Trip duration = 0 - 6 hours", 700, 630);
       stroke(255, 188, 0);
       fill(255, 188, 0);
-      text("Trip duration = 6 - 24 hours", 670, 650);
+      text("Trip duration = 6 - 24 hours", 700, 650);
       stroke(255, 247, 0);
       fill(255, 247, 0);
-      text("Trip duration = 1 - 2 days", 670, 670);
+      text("Trip duration = 1 - 2 days", 700, 670);
       stroke(2, 203, 0);
       fill(2, 203, 0);
       text("Trip duration = 2 - 4 days", 850, 630);
@@ -42,7 +42,7 @@ class Traveler {
       text("Trip duration = 4 - 7 days", 850, 650);
       stroke(162, 26, 255);
       fill(162, 26, 255);
-      text("Trip duration = more than a week", 750, 670);
+      text("Trip duration = more than a week", 850, 670);
 
       if (duration[step] <= 6) {
         stroke(255, 0, 0);

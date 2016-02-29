@@ -9,6 +9,8 @@ Table cityInfo;
 
 TravelVisualizer travelVis;
 
+Traveler traveler;
+
 Node [] nodes;
 Path [] paths; 
 Node transport;
@@ -86,7 +88,7 @@ void keyPressed() {
   if (key == CODED) {
     if (keyCode == RIGHT) {
       if (step != totalSchedRows - 1) {
-        step += 1;
+        traveler.step += 1;
       } else {
         step = 0;
       }

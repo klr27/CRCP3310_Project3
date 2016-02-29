@@ -3,7 +3,6 @@ class TravelVisualizer {
   Node [] nodes;
   Path [] paths;
   Node transport;
-  Traveler traveler;
   double [] durations;
 
   int [] indices = new int [2];
@@ -218,9 +217,9 @@ class TravelVisualizer {
     text("'s' = Show/Hide Paths", 20, 630);
     text("'d' = Size city nodes equally or by duration", 20, 650);
     text("'c' = Display traveler node in black or in color", 20, 670);
-    text("' ' = Active/Deactivate step by step traveler mode", 250, 630);
-    text("Right Arrow = Move traveler forward on time journery", 250, 650);
-    text("Left Arrow = Move traveler backwards on time journery", 250, 670);
+    text("' ' = Active/Deactivate step by step traveler mode", 300, 630);
+    text("Right Arrow = Move traveler forward on time journery", 300, 650);
+    text("Left Arrow = Move traveler backwards on time journery", 300, 670);
     
   }
 
