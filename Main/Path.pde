@@ -3,9 +3,6 @@ class Path {
   PVector start;
   PVector end;
   
-  double [] duration;
-  color [] c;
-  
   Path(PVector start, PVector end) {
     this.start = start;
     this.end = end;

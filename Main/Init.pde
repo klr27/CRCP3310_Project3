@@ -16,7 +16,7 @@
   }
   
 void initHashMap() {
-  for (int i=0; i < nodes.length - 1; i++) {
+  for (int i=0; i < nodes.length; i++) {
     nodeMap.put(nodes[i].name, i);
   }
 }

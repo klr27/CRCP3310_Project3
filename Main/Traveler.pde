@@ -10,6 +10,7 @@ class Traveler {
     this.paths = paths;
     this.c = c;
     this.state = state;
+    duration = new double[totalSchedRows];
   }
   
   void drawTraveler() {

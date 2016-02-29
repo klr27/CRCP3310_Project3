@@ -39,24 +39,12 @@ void setup() {
   paths = new Path[totalSchedRows - 1];
   initNodes();
   initHashMap();
-  /*for (Map.Entry me : nodeMap.entrySet()) {
-  println(me.getKey());
-  println(me.getValue());
-}*/
   
   travelVis = new TravelVisualizer(nodes, paths, transport);
   travelVis.initializeVis();
   
   pathState = BLACK_STATE;
   travelerState = BLACK_STATE;
-  
- /* for (int i=0; i < totalCIRows -1; i++) {
-    println(travelVis.nodes[i].name);
-    println(travelVis.nodes[i].location);
-    println(travelVis.nodes[i].timesVisited);
-    println(travelVis.nodes[i].totalTime);
-    println(travelVis.nodes[i].timeZone);
-  }*/
 }
 
 void draw() {
