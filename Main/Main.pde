@@ -57,12 +57,12 @@ void setup() {
 
   map = loadImage("world.jpg");
   map.resize(1200, 600);
-
+  
   schedule = loadTable("RTRSchedule.csv", "header");
   cityInfo = loadTable("Lat-Long_TZ.csv", "header");
 
   totalSchedRows = schedule.getRowCount();
-  totalCIRows = cityInfo.getRowCount();
+  totalCIRows = cityInfo.getRowCount(); //<>//
 
   travelerState = COLOR_STATE;
   nodeState = BY_DURATION;
