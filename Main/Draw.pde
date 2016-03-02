@@ -85,7 +85,7 @@ void displayCityStats() {
   for (int i=0; i < nodes.length -1; i++) {
     if ((mouseX >= nodes[i].location.x - 5) && (mouseX <= nodes[i].location.x + 5) && (mouseY >= nodes[i].location.x - 5) && (mouseY >= nodes[i].location.x +5)) {
       stroke(0);
-      fill(0, 100);
+      fill(255, 150);
       rectMode(CENTER);
       rect(600, 300, 600, 200);
 
@@ -106,4 +106,9 @@ void displayCityStats() {
 }
 
 void displayPercentages() {
+  if (percentState == SHOW) {
+    stroke(0); 
+    fill(255, 150);
+    rectMode(CORNER);
+  }
 }

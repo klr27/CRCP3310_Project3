@@ -5,7 +5,7 @@ void initializeVis() {
   initPercentages();
   initPercentageMap();
   initColors();
-  initPercentNames();
+  initPercentIDs();
 }
 
 void setUpVis() {

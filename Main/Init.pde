@@ -57,13 +57,13 @@ void initPercentages() {
   }
 }
 
-void initPercentNames() {
-  percentNames = new String[7];
-  percentNames[0] = "Percentage of the year at home:";
-  percentNames[1] = "Percentage of the year in London:";
-  percentNames[2] = "Percentage of the year in the US:";
-  percentNames[3] = "Percentage of the year in Europe:";
-  percentNames[4] = "Percentage of the year in Asia:";
-  percentNames[5] = "Percentage of the year in Australia:";
-  percentNames[0] = "Percentage of the year in transport:";
+void initPercentIDs() {
+  percentIDs = new String[7];
+  percentIDs[0] = "% of year at home: ";
+  percentIDs[1] = "% of year in London: ";
+  percentIDs[2] = "% of year in the US: ";
+  percentIDs[3] = "% of year in Europe: ";
+  percentIDs[4] = "% of year in Asia: ";
+  percentIDs[5] = "% of in Australia: ";
+  percentIDs[0] = "% of year in transport: ";
 }
