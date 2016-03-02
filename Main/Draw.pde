@@ -1,86 +1,3 @@
-String getTimesVisitedMessage(int rowNum) {
-  String message;
-  if (rowNum == 0) {
-    message = "Todd was at home " + nodes[rowNum].timesVisited + "times.";
-  } else if (nodes[rowNum].timesVisited == 1) {
-    message = "Todd went to " + nodes[rowNum].name + " once.";
-  } else {
-    message = "Todd went to " + nodes[rowNum].name + " " + nodes[rowNum].timesVisited + " times.";
-  }
-
-  return message;
-}
-
-String getDateTimeMessage(int rowNum) {
-  int [] dateTime = convertToDateTime(nodes[rowNum].totalTime);
-
-  String message;
-  if (rowNum == 0) {
-    message = "Todd was at home for a total of" + dateTime[0] + "days, " + dateTime[1] + "hours and " + dateTime[2] + " minutes.";
-  } else if ((dateTime[0] == 0) && (dateTime[1] == 0)) {
-    message = "Todd spent a total of " + dateTime[2] + "minutes in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] == 0) && (dateTime[1] == 1) && (dateTime[2] == 1)) {
-    message = "Todd spent a total of 1 hour and 1 minute in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] == 0) && (dateTime[1] == 1) && (dateTime[2] == 0)) {
-    message = "Todd spent a total of 1 hour in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] == 0) && (dateTime[1] == 1) && (dateTime[2] > 1)) {
-    message = "Todd spent a total of 1 hour and " + dateTime[2] + " minutes in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] == 0) && (dateTime[1] > 1) && (dateTime[2] == 1)) {
-    message = "Todd spent a total of "  + dateTime[1] + " hours and 1 minute in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] == 1) && (dateTime[1] == 1) && (dateTime[2] == 1)) {
-    message = "Todd spent a total of 1 day, 1 hour and 1 minute in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] == 1) && (dateTime[1] == 1) && (dateTime[2] > 1)) {
-    message = "Todd spent a total of 1 day, 1 hour and " + dateTime[2] + " minutes in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] == 1) && (dateTime[1] == 1) && (dateTime[2] == 0)) {
-    message = "Todd spent a total of 1 day and 1 hour in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] == 1) && (dateTime[1] > 1) && (dateTime[2] == 1)) {
-    message = "Todd spent a total of 1 day, " + dateTime[1] + " hours and 1 minute in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] == 1) && (dateTime[1] == 0) && (dateTime[2] == 1)) {
-    message = "Todd spent a total of 1 day, and " + dateTime[2] + " minutes in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] == 1) && (dateTime[1] == 0) && (dateTime[2] == 1)) {
-    message = "Todd spent a total of 1 day and 1 minute in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] > 1) && (dateTime[1] == 1) && (dateTime[2] == 1)) {
-    message = "Todd spent a total of " + dateTime[0] + "days, 1 hour and 1 minute in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] > 1) && (dateTime[1] == 1) && (dateTime[2] == 1)) {
-    message = "Todd spent a total of " + dateTime[0] + " days, 1 hour and " + dateTime[2] + " minutes in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] > 1) && (dateTime[1] == 1) && (dateTime[2] == 0)) {
-    message = "Todd spent a total of " + dateTime[0] + " days and 1 hour in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] > 1) && (dateTime[1] == 0) && (dateTime[2] == 1)) {
-    message = "Todd spent a total of " + dateTime[0] + " days and 1 minute in " + nodes[rowNum].name + " .";
-  } else if ((dateTime[0] > 1) && (dateTime[1] > 1) && (dateTime[2] == 1)) {
-    message = "Todd spent a total of " + dateTime[0] + " days, " + dateTime[1] + " hours and 1 minute in " + nodes[rowNum].name + " .";
-  } else {
-    message = "Todd spent a total of " + dateTime[0] + " days, " + dateTime[1] + " hours and " + dateTime[2] + " minutes in " + nodes[rowNum].name + " .";
-  }
-
-  return message;
-}
-
-String getPercentageMessage(int rowNum) {
-  double percent = nodes[rowNum].totalTime / totalTime * 100;
-
-  String message;
-  if (rowNum == 0) {
-    message = "Todd spent " + percent + " percent of 2015 at home.";
-  } else {
-    message = "Todd spent " + percent + " percent of 2015 in " + nodes[rowNum].name + " .";
-  }
-
-  return message;
-}
-
-String createTitle(int rowNum) {
-  String name = nodes[rowNum].name;
-  char [] chars = name.toCharArray();
-
-  String title = "  ";
-  for (int i=0; i < chars.length -1; i++) {
-    title += Character.toUpperCase(chars[i]) + "  ";
-  }
-
-  return title;
-}
-
 void displayCityStats() {
   for (int i=0; i < nodes.length -1; i++) {
     if ((mouseX >= nodes[i].location.x - 5) && (mouseX <= nodes[i].location.x + 5) && (mouseY >= nodes[i].location.x - 5) && (mouseY >= nodes[i].location.x +5)) {
@@ -93,14 +10,14 @@ void displayCityStats() {
       PFont text = createFont("MyriadPro-Semibold", 14);
       textAlign(CENTER);
       fill(0);
-      
+
       textFont(title);
       text(createTitle(i), 600, 240);
-      
+
       textFont(text);
       text(getTimesVisitedMessage(i), 600, 300);
       text(getDateTimeMessage(i), 600, 340);
-      text(getPercentageMessage(i), 600, 380);
+      text(getCityPercentMessage(i), 600, 380);
     }
   }
 }
@@ -111,4 +28,34 @@ void displayPercentages() {
     fill(255, 150);
     rectMode(CORNER);
   }
+}
+
+void displayToggleOptions() {
+  stroke(0);
+  fill(150);
+  rect(10, 610, 700, 80);
+  fill(0);
+  text("'s' = Show/Hide Paths", 20, 630);
+  text("'d' = Size city nodes equally or by duration", 20, 650);
+  text("'c' = Display traveler node in black or in color", 20, 670);
+  text("' ' = Active/Deactivate step by step traveler mode", 300, 630);
+  text("Right Arrow = Move traveler forward on time journery", 300, 650);
+  text("Left Arrow = Move traveler backwards on time journery", 300, 670);
+}
+
+void display() {
+  for (int i=0; i < nodes.length-1; i++) {
+    nodes[i].display(totalTime);
+  }
+
+  if (state == SHOW_ALL) {
+    for (int i=0; i < paths.length - 1; i++) {
+      paths[i].display();
+    }
+  } else {
+    traveler.display();
+  }
+
+  displayCityStats();
+  displayToggleOptions();
 }
