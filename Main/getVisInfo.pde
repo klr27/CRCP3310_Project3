@@ -72,7 +72,7 @@ String getCityPercentMessage(int rowNum) {
 String getPercentStatMessage(int rowNum) {
   String message;
   message = percentIDs[rowNum] + (float)percentages[rowNum] + "%";
-  
+
   return message;
 }
 
@@ -80,10 +80,32 @@ String createTitle(int rowNum) {
   String name = nodes[rowNum].name;
   char [] chars = name.toCharArray();
 
-  String title = "  ";
+  String title = " ";
   for (int i=0; i < chars.length -1; i++) {
-    title += Character.toUpperCase(chars[i]) + "  ";
+    title += Character.toUpperCase(chars[i]) + " ";
   }
 
   return title;
+}
+
+color getColor(int index) {
+  if (duration[index] <= 6) {
+    stroke(colors[0]);
+    fill(colors[0]);
+  } else if ((duration[index] > 6) && (duration[index] <= 24)) {
+    stroke(colors[1]);
+    fill(colors[1]);
+  } else if ((duration[index] > 24) && (duration[index] <= 48)) {
+    stroke(colors[2]);
+    fill(colors[2]);
+  } else if ((duration[index] > 48) && (duration[index] <= 96)) {
+    stroke(colors[3]);
+    fill(colors[3]);
+  } else if ((duration[index] > 96) && (duration[index] <= 168)) {
+    stroke(colors[4]);
+    fill(colors[4]);
+  } else {
+    stroke(colors[5]);
+    fill(colors[5]);
+  }
 }

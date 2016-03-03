@@ -12,12 +12,17 @@ HashMap<String, String> percentageMap = new HashMap<String, String>();
 
 PImage map;
 
+PFont title;
+PFont cityStatHeader;
+PFont cityStatText;
+PFont header;
+PFont text;
+
 //TravelVisualizer travelVis;
 Node [] nodes;
 Path [] paths; 
 Node transport;
 
-Traveler todd;
 double [] durations;
 color [] colors;
 
@@ -43,7 +48,6 @@ int nodeState;
 final int BY_DURATION = 0;
 final int ALL_SAME = 1;
 
-int pathState;
 int percentState;
 int stepState;
 final int SHOW = 0;
@@ -56,6 +60,12 @@ void setup() {
 
   map = loadImage("world.jpg");
   map.resize(1200, 600);
+  
+  title = createFont("MyriadPro-Bold", 24);
+  cityStatHeader = createFont("MyriadPro-Bold", 20);
+  cityStateText = createFont("MyriadPro-Regular", 14);
+  header = createFont("MyriadPro-Semibold", 14);
+  text = createFont("MyriadPro-Regular", 12);
 
   schedule = loadTable("RTRSchedule.csv", "header");
   cityInfo = loadTable("Lat-Long_TZ.csv", "header");
@@ -115,10 +125,6 @@ void keyPressed() {
     }
   }
 
-  if (key == 's' || key == 'S') {
-    pathState = (pathState + 1) % 2;
-  }
-
   if (key == 'c' || key == 'C') {
     travelerState = (travelerState + 1) % 2;
   }
@@ -131,7 +137,7 @@ void keyPressed() {
     percentState = (percentState + 1) % 2;
   }
 
-  if (key == ' ') {
+  if (key == 's' || key == 'S') {
     stepState = (stepState + 1) % 2;
   }
 }

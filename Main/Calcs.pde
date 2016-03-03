@@ -41,10 +41,11 @@ void calculateTimes() {
 
     TimeCalculator  travel = getTravelCalculator(i);
     double transportTime = travel.calculate();
-    transport.totalTime =+ transportTime;
+    transport.totalTime += transportTime;
   }
   TimeCalculator lastCity = getCityCalculator(totalSchedRows - 1);
   double lastTime = lastCity.calculate();
+  nodes[getIndex(totalSchedRows - 1)].totalTime += lastTime;
   durations[totalSchedRows - 1] = lastTime;
 }
 
