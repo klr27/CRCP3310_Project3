@@ -12,7 +12,9 @@ void displayTitle() {
 }
 
 void displayCityStats() {
-  for (int i=0; i < nodes.length -1; i++) {
+  for (int i=0; i < nodes.length - 1; i++) {
+    println(nodes[i].location.x);
+    println(nodes[i].location.y);
     if ((mouseX >= nodes[i].location.x - 5) && (mouseX <= nodes[i].location.x + 5) && (mouseY >= nodes[i].location.x - 5) && (mouseY >= nodes[i].location.x +5)) {
       stroke(0);
       fill(255, 150);
@@ -40,7 +42,7 @@ void displayPercentages() {
     rectMode(CORNER);
     rect(10, 300, 200, 150);
 
-    textAlign(RIGHT);
+    textAlign(BASELINE);
     fill(0);
     textFont(text);
     text(getPercentStatMessage(0), 20, 320);
@@ -61,9 +63,10 @@ void displayToggleOptions() {
   fill(175);
   rect(10, 585, 840, 105);
   fill(0);
-  textAlign(RIGHT);
+  textAlign(BASELINE);
   textFont(header);
   text("Controls:", 20, 610);
+  textFont(text);
   text("Hover mouse over city for stats", 20, 640);
   text("D = Activate/Deactivate cities by duration", 20, 660);
   text("P = Show/Hide percentages", 20, 680);
@@ -79,10 +82,12 @@ void displayColorMeanings() {
   rectMode(CORNER);
   rect(970, 585, 220, 105);
 
-  textAlign(RIGHT);
+  textAlign(BASELINE);
   textFont(header);
   fill(0);
   text("Trip Durations by Color:", 980, 610);
+  
+  textFont(text);
   stroke(colors[0]);
   fill(colors[0]);
   text("0 - 6 hours", 980, 640);

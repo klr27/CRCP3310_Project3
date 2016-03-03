@@ -9,7 +9,7 @@ void initNodes() {
     PVector pos = new PVector(mapx, mapy);
     String zone = cityInfo.getString(i, "Time Zone");
     nodes[i] = new Node(name, pos, zone, nodeState);
-
+    
     PVector transportPos = new PVector(0, 0);
     transport = new Node("Transport", transportPos, "N/A", nodeState);
     transport.timesVisited = totalSchedRows-1;

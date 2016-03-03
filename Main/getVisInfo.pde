@@ -49,7 +49,9 @@ String getDateTimeMessage(int rowNum) {
     message = "Todd spent a total of " + dateTime[0] + " days and 1 minute in " + nodes[rowNum].name + " .";
   } else if ((dateTime[0] > 1) && (dateTime[1] > 1) && (dateTime[2] == 1)) {
     message = "Todd spent a total of " + dateTime[0] + " days, " + dateTime[1] + " hours and 1 minute in " + nodes[rowNum].name + " .";
-  } else {
+  } else if ((dateTime[0] > 1) && (dateTime[1] == 0) && (dateTime[2] == 0)) {
+    message = "Todd spent a total of " + dateTime[0] + " days in " + nodes[rowNum].name + " .";
+  }else {
     message = "Todd spent a total of " + dateTime[0] + " days, " + dateTime[1] + " hours and " + dateTime[2] + " minutes in " + nodes[rowNum].name + " .";
   }
 
@@ -61,9 +63,9 @@ String getCityPercentMessage(int rowNum) {
 
   String message;
   if (rowNum == 0) {
-    message = "Todd spent " + (float)percent + " percent of 2015 at home.";
+    message = "Todd spent " + (float)percent + " % of 2015 at home.";
   } else {
-    message = "Todd spent " + (float)percent + " percent of 2015 in " + nodes[rowNum].name + " .";
+    message = "Todd spent " + (float)percent + " % of 2015 in " + nodes[rowNum].name + " .";
   }
 
   return message;
