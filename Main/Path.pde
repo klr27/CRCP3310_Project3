@@ -13,3 +13,5 @@ class Path {
     fill(0);
     line(start.x, start.y, end.x, end.y);
   }
+  
+}

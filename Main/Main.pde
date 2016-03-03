@@ -18,7 +18,6 @@ PFont cityStatText;
 PFont header;
 PFont text;
 
-//TravelVisualizer travelVis;
 Node [] nodes;
 Path [] paths; 
 Node transport;
@@ -60,10 +59,10 @@ void setup() {
 
   map = loadImage("world.jpg");
   map.resize(1200, 600);
-  
+
   title = createFont("MyriadPro-Bold", 24);
   cityStatHeader = createFont("MyriadPro-Bold", 20);
-  cityStateText = createFont("MyriadPro-Regular", 14);
+  cityStatText = createFont("MyriadPro-Regular", 14);
   header = createFont("MyriadPro-Semibold", 14);
   text = createFont("MyriadPro-Regular", 12);
 
@@ -75,36 +74,17 @@ void setup() {
 
   travelerState = COLOR;
   nodeState = BY_DURATION;
-  pathState = SHOW;
+  percentState = SHOW;
   stepState = SHOW;
   step = 0;
 
-  durations = new double[totalSchedRows];
-  percentages = new double[6];
-
-  nodes = new Node[totalCIRows];
-  paths = new Path[totalSchedRows - 1];
-  initNodes();
-  initNodeMap();
-  initPercentageMap();
-
-  //travelVis = new TravelVisualizer(nodes, paths, transport, stepState);
-  //travelVis.initializeVis();
-
-  for (int i=0; i<nodes.length - 1; i++) {
-    println(nodes[i].name);
-    println(nodes[i].location);
-    println(nodes[i].timeZone);
-    println(nodes[i].totalTime);
-    println(nodes[i].timesVisited);
-  }
+  initializeVis();
+  setUpVis();
 }
 
 void draw() {
   background(225);
-  image(map, 0, 0);
-  //travelVis.display();
-  println(step);
+  drawVis();
 }
 
 void keyPressed() {

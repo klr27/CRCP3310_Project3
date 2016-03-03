@@ -1,4 +1,5 @@
 void initNodes() {
+  nodes = new Node[totalCIRows];
   for (int i = 0; i < totalCIRows; i++) {
     String name = cityInfo.getString(i, "Location");
     float x = float(cityInfo.getString(i, "Longitude"));
@@ -19,13 +20,18 @@ void initNodeMap() {
   for (int i=0; i < nodes.length; i++) {
     nodeMap.put(nodes[i].name, i);
   }
+  
+  println(nodeMap);
 }
 
 int getIndex(int rowNum) {
-  return nodeMap.get(schedule.getString(rowNum, "Location"));
+  int index = nodeMap.get(schedule.getString(rowNum, "Location")); //getValue??
+  println(index);
+  return index;
 }
 
 void initPaths() {
+  paths = new Path[totalSchedRows - 1];
   for (int i=0; i < totalSchedRows - 2; i++) {
     PVector start = new PVector(nodes[getIndex(i)].location.x, nodes[getIndex(0)].location.y);
     PVector end = new PVector(nodes[getIndex(i+1)].location.x, nodes[getIndex(i+1)].location.y);
@@ -76,10 +82,10 @@ void initializeVis() {
   initPercentageMap();
   initColors();
   initPercentIDs();
+  durations = new double[totalSchedRows];
 }
 
 void setUpVis() {
   calculateTimes();
-  todd = new Traveler(paths, durations, travelerState, step);
   calculatePercentages();
 }

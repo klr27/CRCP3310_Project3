@@ -128,7 +128,7 @@ void displayTraveler() {
 
 void drawVis() {
   image(map, 0, 0);  
-  drawTitle();
+  displayTitle();
 
   for (int i=0; i < nodes.length - 1; i++) {
     nodes[i].display(totalTime);

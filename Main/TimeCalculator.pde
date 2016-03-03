@@ -39,4 +39,5 @@ class TimeCalculator {
     long timeDiff = time2 - time1;
     return timeDiff / HOUR_CONVERSION;
   }
+  
 }

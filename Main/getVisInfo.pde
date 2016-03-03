@@ -81,7 +81,7 @@ String createTitle(int rowNum) {
   char [] chars = name.toCharArray();
 
   String title = " ";
-  for (int i=0; i < chars.length -1; i++) {
+  for (int i=0; i < chars.length; i++) {
     title += Character.toUpperCase(chars[i]) + " ";
   }
 
@@ -89,23 +89,20 @@ String createTitle(int rowNum) {
 }
 
 color getColor(int index) {
-  if (duration[index] <= 6) {
-    stroke(colors[0]);
-    fill(colors[0]);
-  } else if ((duration[index] > 6) && (duration[index] <= 24)) {
-    stroke(colors[1]);
-    fill(colors[1]);
-  } else if ((duration[index] > 24) && (duration[index] <= 48)) {
-    stroke(colors[2]);
-    fill(colors[2]);
-  } else if ((duration[index] > 48) && (duration[index] <= 96)) {
-    stroke(colors[3]);
-    fill(colors[3]);
-  } else if ((duration[index] > 96) && (duration[index] <= 168)) {
-    stroke(colors[4]);
-    fill(colors[4]);
+  color c;
+  if (durations[index] <= 6) {
+    c = colors[0];
+  } else if ((durations[index] > 6) && (durations[index] <= 24)) {
+    c = colors[1];
+  } else if ((durations[index] > 24) && (durations[index] <= 48)) {
+    c = colors[2];
+  } else if ((durations[index] > 48) && (durations[index] <= 96)) {
+    c = colors[3];
+  } else if ((durations[index] > 96) && (durations[index] <= 168)) {
+    c = colors[4];
   } else {
-    stroke(colors[5]);
-    fill(colors[5]);
+    c = colors[5];
   }
+  
+  return c;
 }
