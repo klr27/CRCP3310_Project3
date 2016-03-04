@@ -3,28 +3,29 @@ class Node {
   String name;
   PVector location;
   String timeZone;
-  int state;
   int timesVisited;
   double totalTime;
 
-  Node(String name, PVector location, String timeZone, int state) {
+  Node(String name, PVector location, String timeZone) {
     this.name = name;
     this.location = location;
     this.timeZone = timeZone;
-    this.state = state;
     timesVisited = 0;
     totalTime = 0.0;
   }
 
-  void display(double wholeTime) {
+  void displayByDuration(double wholeTime) {
+    stroke(255, 100);
+    fill(255, 100);
+    ellipseMode(CENTER);
+    double diameter = totalTime/wholeTime * 100;
+    ellipse(location.x, location.y, (float)diameter, (float)diameter);
+  }
+  
+  void displayTheSame() {
     stroke(255);
     fill(255);
     ellipseMode(CENTER);
-    if (state == BY_DURATION) {
-      double diameter = totalTime/wholeTime * 50;
-      ellipse(location.x, location.y, (float)diameter, (float)diameter);
-    } else {
-      ellipse(location.x, location.y, 5, 5);
-    }
+    ellipse(location.x, location.y, 7, 7);
   }
 }

@@ -8,10 +8,10 @@ void initNodes() {
     float mapy = map(y, 90, -90, 0, 600);
     PVector pos = new PVector(mapx, mapy);
     String zone = cityInfo.getString(i, "Time Zone");
-    nodes[i] = new Node(name, pos, zone, nodeState);
+    nodes[i] = new Node(name, pos, zone);
     
     PVector transportPos = new PVector(0, 0);
-    transport = new Node("Transport", transportPos, "N/A", nodeState);
+    transport = new Node("Transport", transportPos, "N/A");
     transport.timesVisited = totalSchedRows-1;
   }
 }
@@ -25,7 +25,7 @@ void initNodeMap() {
 }
 
 int getIndex(int rowNum) {
-  int index = nodeMap.get(schedule.getString(rowNum, "Location")); //getValue??
+  int index = nodeMap.get(schedule.getString(rowNum, "Location")); 
   println(index);
   return index;
 }

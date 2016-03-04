@@ -15,7 +15,7 @@ void displayCityStats() {
   for (int i=0; i < nodes.length - 1; i++) {
     println(nodes[i].location.x);
     println(nodes[i].location.y);
-    if ((mouseX >= nodes[i].location.x - 5) && (mouseX <= nodes[i].location.x + 5) && (mouseY >= nodes[i].location.x - 5) && (mouseY >= nodes[i].location.x +5)) {
+    if ((mouseX >= nodes[i].location.x - 5) && (mouseX <= nodes[i].location.x + 5) && (mouseY >= nodes[i].location.y - 2) && (mouseY >= nodes[i].location.y + 2)) {
       stroke(0);
       fill(255, 150);
       rectMode(CENTER);
@@ -86,7 +86,7 @@ void displayColorMeanings() {
   textFont(header);
   fill(0);
   text("Trip Durations by Color:", 980, 610);
-  
+
   textFont(text);
   stroke(colors[0]);
   fill(colors[0]);
@@ -136,12 +136,16 @@ void drawVis() {
   displayTitle();
 
   for (int i=0; i < nodes.length - 1; i++) {
-    nodes[i].display(totalTime);
+    if (nodeState == BY_DURATION) {
+      nodes[i].displayByDuration(totalTime);
+    } else {
+      nodes[i].displayTheSame();
+    }
   }
 
   displayCityStats();
   displayToggleOptions();
-  
+
   if (percentState == SHOW) {
     displayPercentages();
   }
