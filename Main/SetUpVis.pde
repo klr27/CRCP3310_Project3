@@ -20,19 +20,16 @@ void initNodeMap() {
   for (int i=0; i < nodes.length; i++) {
     nodeMap.put(nodes[i].name, i);
   }
-  
-  println(nodeMap);
 }
 
 int getIndex(int rowNum) {
   int index = nodeMap.get(schedule.getString(rowNum, "Location")); 
-  println(index);
   return index;
 }
 
 void initPaths() {
   paths = new Path[totalSchedRows - 1];
-  for (int i=0; i < totalSchedRows - 2; i++) {
+  for (int i=0; i < totalSchedRows - 1; i++) {
     PVector start = new PVector(nodes[getIndex(i)].location.x, nodes[getIndex(0)].location.y);
     PVector end = new PVector(nodes[getIndex(i+1)].location.x, nodes[getIndex(i+1)].location.y);
     paths[i] = new Path(start, end);
@@ -63,6 +60,13 @@ void initPercentages() {
   }
 }
 
+void initCountryTimes() {
+  countryTimes = new double[4];
+  for(int i=0; i<6; i++) {
+    countryTimes[i] = 0.0;
+  }
+}
+
 void initPercentIDs() {
   percentIDs = new String[7];
   percentIDs[0] = "% of year at home: ";
@@ -80,6 +84,7 @@ void initializeVis() {
   initPaths();
   initPercentages();
   initPercentageMap();
+  println(percentageMap);
   initColors();
   initPercentIDs();
   durations = new double[totalSchedRows];

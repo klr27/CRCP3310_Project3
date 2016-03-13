@@ -8,13 +8,11 @@ void displayTitle() {
   textAlign(CENTER);
   String title = "V I S U A L I Z I N G   T O D D   R U P P E R T ' S   2 0 1 5   T R A V E L";
   fill(0);
-  text(title, 600, 45);
+  text(title, 600, 40);
 }
 
 void displayCityStats() {
   for (int i=0; i < nodes.length - 1; i++) {
-    println(nodes[i].location.x);
-    println(nodes[i].location.y);
     if ((mouseX >= nodes[i].location.x - 5) && (mouseX <= nodes[i].location.x + 5) && (mouseY >= nodes[i].location.y - 2) && (mouseY >= nodes[i].location.y + 2)) {
       stroke(0);
       fill(255, 150);
@@ -118,11 +116,8 @@ void displayTraveler() {
   }
 
   ellipseMode(CENTER);
-  if (step != totalSchedRows - 1) {
-    ellipse(paths[step].start.x, paths[step].start.y, 10, 10);
-  } else {
-    ellipse(paths[paths.length - 1].end.x, paths[paths.length - 1].end.y, 10, 10);
-  }
+  int index = getIndex(step);
+  ellipse(nodes[index].location.x, nodes[index].location.y, 10, 10);
 
   if (step != 0) {
     for (int i=0; i < step; i++) {

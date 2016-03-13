@@ -26,6 +26,7 @@ double [] durations;
 color [] colors;
 
 double totalTime;
+double [] countryTimes;
 double [] percentages;
 String [] percentIDs;
 final int HOME = 0;
